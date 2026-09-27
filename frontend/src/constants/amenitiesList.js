@@ -1,0 +1,23 @@
+const amenitiesList = [
+    "Dance floor",
+    "Live Music Nights",
+    "DJ & Karaoke Evenings",
+    "Book with ₹0 Payment",
+    "Enjoy Happy Hours with 2+1 offer",
+    "Outdoor Garden Seating",
+    "Rooftop Dining Experience",
+    "Pet-Friendly Area",
+    "Kids’ Play Zone",
+    "Free Wi-Fi",
+    "Valet Parking Available",
+    "Private Dining Cabins",
+    "Wheelchair Accessible",
+    "Sports Screening on Big Screen",
+    "Buffet & Unlimited Meal Options",
+    "Vegan and Gluten-Free Menu",
+    "Takeaway & Home Delivery",
+    "Event Hosting & Party Bookings",
+    "Family-Friendly Environment",
+    "Air Conditioned Halls",
+];
+export default amenitiesList;

@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { MatchController } from "../controllers/match.controller.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
+const router = Router();
+router.post("/like", protectRoute, MatchController.likeUser);
+router.post("/pass", protectRoute, MatchController.passUser);
+router.get("/", protectRoute, MatchController.getMatches);
+router.post("/block/:userId", protectRoute, MatchController.blockUser);
+router.post("/report/:userId", protectRoute, MatchController.reportUser);
+export default router;
