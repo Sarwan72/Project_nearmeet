@@ -31,7 +31,10 @@ async function runMigrations() {
         const res = await client.query(`SELECT filename FROM schema_migrations`);
         const executed = new Set(res.rows.map((r) => r.filename));
         // 3. Read migration files
-        const migrationsDir = path.resolve(__dirname, "../../database/migrations");
+        let migrationsDir = path.resolve(__dirname, "../database/migrations");
+        if (!fs.existsSync(migrationsDir)) {
+            migrationsDir = path.resolve(__dirname, "../../database/migrations");
+        }
         if (!fs.existsSync(migrationsDir)) {
             throw new Error(`Migrations directory not found at: ${migrationsDir}`);
         }

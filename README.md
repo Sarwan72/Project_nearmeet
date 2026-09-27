@@ -135,6 +135,8 @@ NearMeet integrates **Google Gemini 1.5 Flash** directly into the vendor dashboa
 ```
 offline_meeting_app/
 ├── backend/
+│   ├── database/
+│   │   └── migrations/               # PostgreSQL schema & table migration scripts
 │   ├── public/
 │   │   └── uploads/                  # Local media uploads directory
 │   ├── scripts/
