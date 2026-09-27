@@ -5,11 +5,12 @@ import { config } from "../config/env.js";
 import { ApiError } from "../middleware/error.middleware.js";
 export class AuthService {
     static getCookieOptions(maxAgeDays = 7) {
+        const isProd = config.isProduction || Boolean(process.env.RENDER);
         return {
             maxAge: maxAgeDays * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            secure: config.isProduction,
-            sameSite: config.isProduction ? "none" : "lax",
+            secure: isProd,
+            sameSite: isProd ? "none" : "lax",
             path: "/",
         };
     }

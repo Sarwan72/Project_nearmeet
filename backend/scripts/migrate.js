@@ -10,10 +10,17 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 const connectionString = process.env.DATABASE_URL ||
     "postgresql://postgres:postgres@localhost:5432/nearmeet";
-const isProduction = process.env.NODE_ENV === "production";
+const isRemoteDb =
+    process.env.NODE_ENV === "production" ||
+    Boolean(process.env.RENDER) ||
+    connectionString.includes("render.com") ||
+    connectionString.includes("neon.tech") ||
+    connectionString.includes("supabase.co") ||
+    connectionString.includes("sslmode=require");
+
 export const pool = new Pool({
     connectionString,
-    ssl: isProduction ? { rejectUnauthorized: false } : false,
+    ssl: isRemoteDb ? { rejectUnauthorized: false } : false,
 });
 async function runMigrations() {
     console.log("🚀 Starting PostgreSQL migrations on:", connectionString.replace(/:[^:@]+@/, ":****@"));

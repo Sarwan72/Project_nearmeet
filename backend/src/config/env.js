@@ -5,10 +5,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 dotenv.config();
+const isProduction =
+    process.env.NODE_ENV === "production" ||
+    process.env.RENDER === "true" ||
+    Boolean(process.env.RENDER);
+
 export const config = {
     port: parseInt(process.env.PORT || "5001", 10),
-    nodeEnv: process.env.NODE_ENV || "development",
-    isProduction: process.env.NODE_ENV === "production",
+    nodeEnv: isProduction ? "production" : (process.env.NODE_ENV || "development"),
+    isProduction,
     databaseUrl: process.env.DATABASE_URL ||
         "postgresql://postgres:postgres@localhost:5432/nearmeet",
     jwtSecret: process.env.JWT_SECRET_KEY || process.env.JWT_SECRET || "nearmeet_secret_jwt_key_2026",
